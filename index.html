@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>First Todo List</title>
+        <link rel="stylesheet" href="css/normalize.min.css" />
+        <link rel="stylesheet" href="css/main.min.css" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                <div class="todo">
+                    <header class="todo_header">
+                        <div class="todo_name">Todo List</div>
+                    </header>
+                    <main class="todo_tasks">
+                        <div class="todo_data">
+                            <div class="todo_today">Today</div>
+                            <div class="todo_date">March 4, 2010</div>
+                        </div>
+                        <ul class="todo_list">
+                            <li class="todo_item">
+                                <label class="todo_labels">
+                                    <input
+                                        type="checkbox"
+                                        class="todo_checkboxes"
+                                        name="todo_checkboxes"
+                                    />
+                                    <span class="todo_fakebox"></span>
+                                    <span class="todo_text">Задание 1</span>
+                                </label>
+                                <div class="todo_time color_red">
+                                    <span>6:00 am</span>
+                                </div>
+                            </li>
+                            <li class="todo_item">
+                                <label class="todo_labels">
+                                    <input
+                                        type="checkbox"
+                                        class="todo_checkboxes"
+                                        name="todo_checkboxes"
+                                    />
+                                    <span class="todo_fakebox"></span>
+                                    <span class="todo_text">Задание 2</span>
+                                </label>
+                                <div class="todo_time color_red">
+                                    <span>11:00 am</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </main>
+                </div>
+            </div>
+        </div>
+        <script src="js/script.js"></script>
+    </body>
+</html>

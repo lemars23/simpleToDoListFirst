@@ -1,0 +1,155 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+    .wrapper {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-width: 360px) {
+    .color_grey {
+        color: #7A7777;
+        transition: all 0.2s ease;
+    }
+    .wrapper {
+        width: 100vw;
+        height: 100vh;
+        .container {
+            height: 100%;
+            width: 100%;
+            .todo {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+    .todo_header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 14.05%;
+
+        background: #0AB6AB;
+
+        .todo_name {
+            font-size: 1.25em;
+            font-weight: 600;
+        }
+    }
+
+    .todo_tasks {
+        background: #151515;
+        color: #fff;
+
+        box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.40);
+
+        height: 86%;
+
+        padding: 50px 24px 53px;
+
+        .todo_data {
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+            .todo_today {
+                font-size: 1.25em;
+                font-weight: 600;
+            }
+            .todo_date {
+                font-size: 0.875em;
+                color: #7D7878;
+            }
+        }
+
+        .todo_list {
+            height: 58.4%;
+
+            padding: 27px 0 0;
+            margin: 0;
+
+            display: flex;
+            flex-direction: column;
+            row-gap: 8px;
+          
+            .todo_item {
+                width: 100%;
+                height: 14.71%;
+                
+                list-style-position: inside;
+                list-style: none;
+
+                display: flex;
+                align-items: center;
+
+                padding: 2.782% 1.947%;
+
+                border-radius: 8px;
+                background: #201F1F;
+
+                .todo_labels {
+                    display: flex;
+                    align-items: center;
+                    .todo_checkboxes {
+                        display: none;
+                    }
+
+                    .todo_checkboxes:checked + .todo_fakebox::before {
+                        opacity: 1;
+                    }
+
+                    .todo_fakebox::before {
+                        content: "";
+                        position: absolute;
+                        max-height: 20px;
+                        max-width: 20px;
+                        min-height: 15px;
+                        min-width: 15px;
+                        background-image: url("../icons/done.svg");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                        border: 0px solid transparent;
+                        opacity: 0;
+                        transition: 0.2s linear;
+                    }
+
+                    .todo_fakebox {
+                        margin-right: 8px;
+                        display: inline-block;
+                        max-height: 20px;
+                        max-width: 20px;
+                        min-height: 15px;
+                        min-width: 15px;
+                        background-image: url("../icons/dontdone.svg");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        position: relative;
+                    }
+
+                    .todo_line_through {
+                        text-decoration: line-through;
+                        transition: all 0.2s ease;
+                    }
+                }
+
+                .todo_time {
+                    font-size: 0.75em;
+                    margin-left: auto;
+
+                
+                }
+            }
+        }
+    }
+}

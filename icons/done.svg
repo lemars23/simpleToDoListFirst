@@ -1,0 +1,25 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="20" height="20" fill="#F5F5F5"/>
+<g id="Todo list">
+<rect width="1728" height="1117" transform="translate(-686 -503)" fill="white"/>
+<g id="todo list" filter="url(#filter0_d_0_1)">
+<rect x="-37" y="-411" width="430" height="932" rx="30" fill="#151515"/>
+<rect id="Rectangle 1" x="-13" y="-20" width="382" height="60" rx="8" fill="#201F1F"/>
+<g id="ri:checkbox-circle-line">
+<path id="Vector" d="M10 18.3333C5.39751 18.3333 1.66667 14.6025 1.66667 10C1.66667 5.3975 5.39751 1.66667 10 1.66667C14.6025 1.66667 18.3333 5.3975 18.3333 10C18.3333 14.6025 14.6025 18.3333 10 18.3333ZM10 16.6667C11.7681 16.6667 13.4638 15.9643 14.7141 14.714C15.9643 13.4638 16.6667 11.7681 16.6667 10C16.6667 8.23189 15.9643 6.5362 14.7141 5.28596C13.4638 4.03571 11.7681 3.33333 10 3.33333C8.23189 3.33333 6.5362 4.03571 5.28596 5.28596C4.03572 6.5362 3.33334 8.23189 3.33334 10C3.33334 11.7681 4.03572 13.4638 5.28596 14.714C6.5362 15.9643 8.23189 16.6667 10 16.6667ZM9.16917 13.3333L5.63334 9.7975L6.81167 8.61917L9.16917 10.9767L13.8833 6.2625L15.0617 7.44083L9.16917 13.3333Z" fill="#7A7777"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_0_1" x="-67" y="-441" width="490" height="992" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="15"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+</defs>
+</svg>
