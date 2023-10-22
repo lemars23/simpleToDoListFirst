@@ -2,30 +2,18 @@
 
 document.addEventListener("DOMContentLoaded", event => {
     const todoList = document.querySelector(".todo_list");
-
     todoList.addEventListener("click", event => {
         if(event.target && event.target.matches("input.todo_checkboxes")) {
-            // addColorAndLineThrough(event.target.parentElement.lastElementChild);
-            // event.target.parentElement.nextElementSibling.classList.toggle("color_grey");
-            addGreyColor(event.target.parentElement.lastElementChild, "todo_line_through");
-            addGreyColor(event.target.parentElement.lastElementChild, "color_grey");
-            addGreyColor(event.target.parentElement.nextElementSibling, "color_grey");
+            const label = event.target.parentElement;
+            toggleClass(label.lastElementChild, "todo_line_through");
+            toggleClass(label.lastElementChild, "color_grey");
+            toggleClass(label.nextElementSibling, "color_grey");
+            toggleClass(label.children[1], "todo_border");
         }
     });
-
 });
 
-function addColorAndLineThrough(element) {
-    if(element.classList.contains("todo_line_through") && element.classList.contains("color_grey")) {
-        element.classList.remove("todo_line_through");
-        element.classList.remove("color_grey");
-    } else {
-        element.classList.add("todo_line_through");
-        element.classList.add("color_grey");
-    }
-}
-
-function addGreyColor(element, enemyClass) {
+function toggleClass(element, enemyClass) {
     if(element.classList.contains(enemyClass)) {
         element.classList.remove(enemyClass);
     } else {
