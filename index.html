@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="todo">
                     <header class="todo_header">
-                        <div class="todo_name">Todo List</div>
+                        <h1 class="todo_name">Todo List</h1>
                     </header>
                     <main class="todo_tasks">
                         <div class="todo_data">
@@ -49,12 +49,28 @@
                                 </div>
                             </li>
                         </ul>
-                        <div class="todo_add">
+                        <div class="todo_add_button">
                             <a href="#" class="todo_button">
                                 <span class="todo_plus"></span>
                             </a>
                         </div>
                     </main>
+                </div>
+                <div class="todo_add_modal">
+                    <h2 class="todo_add_name">Добавление задания</h2>
+                    <form method="POST" class="todo_add_form">
+                        <textarea
+                            name="todo_add_text"
+                            class="todo_add_text"
+                            placeholder="Текст задания"
+                        ></textarea>
+                        <button type="submit" class="todo_add_button">
+                            <span>Добавить</span>
+                        </button>
+                    </form>
+                    <div class="todo_add_back">
+                        <span> Назад </span>
+                    </div>
                 </div>
             </div>
         </div>
