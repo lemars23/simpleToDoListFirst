@@ -13,6 +13,12 @@ body {
     }
 }
 
+@media screen and (max-width: 360px) {
+    .wrapper {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 768px) and (min-width: 360px) {
     .color_grey {
         color: #7A7777;
@@ -29,6 +35,15 @@ body {
                 width: 100%;
             }
         }
+    }
+
+    .container {
+        position: relative;
+    }
+
+    .todo {
+        z-index: 0;
+        transition: 3s showAddModal linear;
     }
 
     .todo_header {
@@ -142,7 +157,7 @@ body {
                 }
             }
         }
-        .todo_add {
+        .todo_add_button {
             border-radius: 50%;
             margin-top: auto;
             align-self: flex-end;
@@ -184,5 +199,107 @@ body {
                 }
             }
         }
+    }
+
+    .todo_add_modal {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100vw;
+        height: 100vh;
+        background-color: #1a1a1d;
+        padding: 50px 24px 53px;
+
+        .todo_add_name {
+            text-align: center;
+            color: #950740;
+            font-size: 2em;
+        }
+
+        .todo_add_form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60%;
+            width: 100%;
+            .todo_add_text {
+                min-width: 70%;
+                min-height: 90%;
+
+                outline: 0;
+
+                resize: none;
+
+                padding: 10px;
+                
+                text-align: center;
+                font-size: 1.2em;
+
+                border-radius: 8px;
+
+                border: 2px solid #4e4e50;
+            }
+
+            .todo_add_text::first-letter {
+                text-transform: uppercase;
+            }
+
+            .todo_add_button {
+                margin-top: 10px;
+                padding: 20px 5px; 
+                max-width: 35%;
+                min-width: 25%;
+                height: 7%;
+
+                outline: 0;
+                border: 0;
+                background-color: #C3073F;
+
+                color: #fff;
+                font-weight: bold;
+                font-size: 1.2em;
+
+                border-radius: 8px;
+                box-shadow: -31px 25px 33px -10px rgba(165, 38, 76, 0.2);
+                
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                    display: inline-block;
+                }
+            }
+
+            animation: 2s showAddModal linear;
+        }
+
+
+        .todo_add_back {
+            text-align: center;
+
+            span {
+                display: inline-block;
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #4E4E50;
+                color: #fff;
+            }
+        }
+    }
+    .todo_add_turn {
+        display: block;
+    }
+}
+
+@keyframes showAddModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
