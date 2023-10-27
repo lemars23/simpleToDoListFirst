@@ -5,61 +5,69 @@ document.addEventListener("DOMContentLoaded", event => {
     const addButton = document.querySelector(".todo_button");
     const addForm = document.querySelector(".todo_add_form");
     const backList = document.querySelector(".todo_add_back>span");
+    let newArrayTasks = [];
 
     todoList.addEventListener("click", changeList);
+    todoList.addEventListener("click", event => changeChecked(event, newArrayTasks));
     addButton.addEventListener("click", toggleAddModal);
     backList.addEventListener("click", toggleAddModal);
-    addForm.addEventListener("submit", addTask);
+    addForm.addEventListener("submit", event => addTasks(event, newArrayTasks, todoList));
 });
 
-function showTasks(tasks, list) {
-    for(let task of tasks) {
-        list.innerHTML += task;
+
+function showArrayTasks(arrayTasks, list) {
+    list.innerHTML = "";
+
+    for(let task of arrayTasks) {
+        task = JSON.parse(task);
+
+        list.innerHTML += `
+        <li class="todo_item item-${task.id}">
+            <label class="todo_labels">
+                <input
+                    type="checkbox"
+                    class="todo_checkboxes"
+                    name="todo_checkboxes"
+                />
+                <span class="todo_fakebox"></span>
+                <span class="todo_text">${task.task}</span>
+            </label>
+            <div class="todo_time color_red">
+                <span>${task.time}</span>
+            </div>
+        </li>
+        `;
     }
 }
-
-function getTasks(arr = []) {
-    for(let key in localStorage) {
-        if (!localStorage.hasOwnProperty(key)) {
-            continue;
-        }
-        if(key.match(/Task-\d/ig)) {
-            arr.push(key);
-        }
-    }
-    return arr.sort();
-}
-
-function getLastTask(tasks, arr = []) {
-    if(tasks.length > 0) {
-        for(let key of tasks) {
-            arr.push(key.match(/\d/g).join(""));
-        }
-    } else {
-        return 1;
-    }
-    
-    return (Math.max.apply(null, arr)) + 1;
-}
-
-function addTask(event) {
+function addTasks(event, array, list) {
     event.preventDefault();
 
     const value = event.target.firstElementChild.value;
-    const idLastTask = getLastTask(getTasks());
-    const newTask = `Task-${idLastTask}`;
     const time = (new Date()).getHours() + ":" + (new Date()).getMinutes();
+    let id = Number(array.length) + 1;
+    array.push(JSON.stringify({
+        "id": id,
+        "task": value,
+        "time": time,
+        "checked": false
+    }));
 
-   localStorage.setItem(newTask, JSON.stringify({task: value, time: time}));
-
-    document.querySelector(".todo_add_modal").classList.remove("todo_add_turn");
-
-
+    // console.log(array);
+    showArrayTasks(array, list);
 }
+function changeChecked(event, array) {
+    if(event.target && event.target.matches("input.todo_checkboxes")) {
+        const id = event.target.parentElement.parentElement.classList.item(1).split("-")[1];
 
-function toggleAddModal(event) {
-    event.preventDefault();
-    toggleClass(document.querySelector(".todo_add_modal"), "todo_add_turn");
+        for(let item of array) {
+            item = JSON.parse(item);
+            
+            if(item.id == id) {
+                item.checked = true;
+            }
+        }
+    }
+    return array;
 }
 
 function changeList(event) {
@@ -71,7 +79,10 @@ function changeList(event) {
         toggleClass(label.children[1], "todo_border");
     }
 }
-
+function toggleAddModal(event) {
+    event.preventDefault();
+    toggleClass(document.querySelector(".todo_add_modal"), "todo_add_turn");
+}
 function toggleClass(element, enemyClass) {
     if(element.classList.contains(enemyClass)) {
         element.classList.remove(enemyClass);
