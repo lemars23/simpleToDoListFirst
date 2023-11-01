@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", event => {
     const addButton = document.querySelector(".todo_button");
     const addForm = document.querySelector(".todo_add_form");
     const backList = document.querySelector(".todo_add_back>span");
+    const time = document.querySelector(".todo_date");
+
+    time.innerHTML = getStringDate();
 
     todoList.addEventListener("click", changeList);
     addButton.addEventListener("click", toggleAddModal);
@@ -13,8 +16,11 @@ document.addEventListener("DOMContentLoaded", event => {
     addForm.addEventListener("submit", event => addTask(event) );
     addForm.addEventListener("submit", () => showTasks(todoList));
     todoList.addEventListener("click", event => changeLSChecked(event));
+    todoList.addEventListener("click", event => changeArrayChecked(event, todoList))
 
     showTasks(todoList);
+
+    
 });
 
 // Добавление и выполнение задач
@@ -32,11 +38,11 @@ function addTask(event) {
     localStorage.setItem(position, JSON.stringify({id: position, task: inputTask, time:time, checked: false}));
 }
 // Показывает задачи на главной страницы
-function showTasks(list) {
+function showTasks(list, array = getArrayTasks()) {
     // Сброс списка
     list.innerHTML = "";
     // Выводит задачи на главную страницу, задачи отсортированны по id
-    for(let key of getArrayTasks()) {
+    for(let key of array) {
         list.innerHTML += `
         <li class="todo_item item-${key.id}">
             <label class="todo_labels">
@@ -69,11 +75,10 @@ function getId(arrayIds = []) {
     }
     return 0;
 }
-
 // Изменить параметр checked в localStorage
 function changeLSChecked(event) {
     if(event.target && event.target.matches("input.todo_checkboxes")) {
-        const id = event.target.parentElement.parentElement.classList.item(1).split("-")[1];
+        const id = getTaskByIdFromItem(event);
         for(let key of getArrayTasks()) {
             if(key.id === (+id)) {
                 const toggleChecked = getTaskByIdFromStorage(key.id).checked ? false : true;
@@ -101,11 +106,55 @@ function getArrayTasks(newArr = []) {
     }
     return newArr.sort((a, b) => a.id - b.id);
 }
-// Получить id в массиве заданий
-function getTaskByIdFromArray(event) {
+// Получить id 
+function getTaskByIdFromItem(event) {
     if(event.target && event.target.matches("input.todo_checkboxes")) {
-        return event.target.parentElement.parentElement.classList.item(1).split("-")[1];
+        return +(event.target.parentElement.parentElement.classList.item(1).split("-")[1]);
     }
+}
+// Изменить checked в массиве по id
+function changeArrayChecked(event, list) {
+    if(event.target && event.target.matches("input.todo_checkboxes")) {
+        const id = getTaskByIdFromItem(event);
+        for(let item of getArrayTasks()) {
+            const toggleChecked = item.checked ? false : true;
+            if(item.id === id) {
+                item.checked = toggleChecked;
+            }
+        }
+        showTasks(list, getArrayTasks());
+    }
+}
+
+// Время
+// Установить время
+function getTime(year, month, day, hours, minutes, seconds) {
+    if(arguments.length == 6) {
+        return new Date(year, month, day, hours, minutes, seconds);
+    }
+    return new Date();
+}
+// Вывод времени на страницу
+function getStringDate(year, month, day, hours, minutes, seconds) {
+    const time = arguments.length == 6 ? getTime(year, month, day, hours, minutes, seconds) : getTime();
+    const monthes = [
+        "Января",
+        "Февраля",
+        "Марта",
+        "Апреля",
+        "Мая",
+        "Июня",
+        "Июля",
+        "Августа",
+        "Сентября",
+        "Октября",
+        "Ноября",
+        "Декабря"
+    ];
+    const monthOfTime = time.getMonth();
+    const dayOfTime = time.getDate();
+    const yearOfTime = time.getFullYear();
+    return `${monthes[monthOfTime]} ${dayOfTime}, ${yearOfTime}`;
 }
 
 // Визуализация
